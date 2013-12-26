@@ -35,6 +35,7 @@ public class DefaultProjectDescriptor implements ProjectDescriptor, ProjectIdent
     private ProjectDescriptorRegistry projectDescriptorRegistry;
     private Path path;
     private String buildFileName = Project.DEFAULT_BUILD_FILE;
+    private String buildFileEncoding = "UTF-8";
 
     public DefaultProjectDescriptor(DefaultProjectDescriptor parent, String name, File dir,
                                     ProjectDescriptorRegistry projectDescriptorRegistry, FileResolver fileResolver) {
@@ -109,6 +110,16 @@ public class DefaultProjectDescriptor implements ProjectDescriptor, ProjectIdent
 
     public void setBuildFileName(String name) {
         this.buildFileName = name;
+    }
+
+    @Override
+    public String getBuildFileEncoding() {
+        return buildFileEncoding;
+    }
+
+    @Override
+    public void setBuildFileEncoding(String encoding) {
+        this.buildFileEncoding = encoding;
     }
 
     public File getBuildFile() {

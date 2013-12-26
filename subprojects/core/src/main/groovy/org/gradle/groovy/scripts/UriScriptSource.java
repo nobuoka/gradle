@@ -31,11 +31,19 @@ public class UriScriptSource implements ScriptSource {
     private String className;
 
     public UriScriptSource(String description, File sourceFile) {
-        resource = new UriResource(description, sourceFile);
+        this(description, sourceFile, "UTF-8");
     }
 
     public UriScriptSource(String description, URI sourceUri) {
-        resource = new UriResource(description, sourceUri);
+        this(description, sourceUri, "UTF-8");
+    }
+
+    public UriScriptSource(String description, File sourceFile, String encoding) {
+        resource = new UriResource(description, sourceFile, encoding);
+    }
+
+    public UriScriptSource(String description, URI sourceUri, String encoding) {
+        resource = new UriResource(description, sourceUri, encoding);
     }
 
     /**

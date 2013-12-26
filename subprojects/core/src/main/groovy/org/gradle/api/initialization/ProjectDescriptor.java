@@ -71,6 +71,20 @@ public interface ProjectDescriptor {
     void setBuildFileName(String name);
 
     /**
+     * Returns the character encoding of the build file. This encoding is used when the build file is read.
+     *
+     * @return The build file encoding.
+     */
+    String getBuildFileEncoding();
+
+    /**
+     * Sets the character encoding of the build file. This encoding is used when the build file is read.
+     *
+     * @param encoding The build file encoding. Should not be null.
+     */
+    void setBuildFileEncoding(String encoding);
+
+    /**
      * Returns the build file for this project.
      *
      * @return The build file. Never returns null.

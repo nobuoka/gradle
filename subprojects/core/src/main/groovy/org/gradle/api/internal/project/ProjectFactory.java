@@ -34,11 +34,12 @@ public class ProjectFactory implements IProjectFactory {
 
     public DefaultProject createProject(ProjectDescriptor projectDescriptor, ProjectInternal parent, GradleInternal gradle) {
         File buildFile = projectDescriptor.getBuildFile();
+        String buildFileEncoding = projectDescriptor.getBuildFileEncoding();
         ScriptSource source;
         if (!buildFile.exists()) {
             source = new StringScriptSource("empty build file", "");
         } else {
-            source = new UriScriptSource("build file", buildFile);
+            source = new UriScriptSource("build file", buildFile, buildFileEncoding);
         }
 
         DefaultProject project = instantiator.newInstance(DefaultProject.class,

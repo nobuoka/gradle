@@ -32,18 +32,21 @@ import static org.gradle.util.GFileUtils.canonicalise;
 public class UriResource implements Resource {
     private final File sourceFile;
     private final URI sourceUri;
+    private final String encoding;
     private final String description;
 
-    public UriResource(String description, File sourceFile) {
+    public UriResource(String description, File sourceFile, String encoding) {
         this.description = description;
         this.sourceFile = canonicalise(sourceFile);
         this.sourceUri = sourceFile.toURI();
+        this.encoding = encoding;
     }
 
-    public UriResource(String description, URI sourceUri) {
+    public UriResource(String description, URI sourceUri, String encoding) {
         this.description = description;
         this.sourceFile = sourceUri.getScheme().equals("file") ? canonicalise(new File(sourceUri.getPath())) : null;
         this.sourceUri = sourceUri;
+        this.encoding = encoding;
     }
 
     public String getDisplayName() {
@@ -57,7 +60,7 @@ public class UriResource implements Resource {
         try {
             InputStream inputStream = getInputStream(sourceUri);
             try {
-                return IOUtils.toString(inputStream);
+                return IOUtils.toString(inputStream, encoding);
             } finally {
                 inputStream.close();
             }
